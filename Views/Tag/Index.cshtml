@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Tag>
+
+<h1>Tag Page</h1>
+<div>
+ 
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                  @foreach (var Tag in Model)
+        {
+            <tr>
+                <td width="30%">
+                    @Tag.Title
+                </td>
+                <td width="40%">
+                    @Tag.Description
+                </td>
+
+
+            </tr>
+
+        }
+
+
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không tồn tại thể loại trong database</p>
+    }
+
+
+
+
+
+</div>
+

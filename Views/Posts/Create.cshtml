@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model PostsCreateVM
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info">Create Posts</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Posts.Title"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Posts.Title" class="form-control" />
+                        <span asp-validation-for="Posts.Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Posts.Content"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Posts.Content" class="form-control" />
+                        <span asp-validation-for="Posts.Content" class="text-danger"></span>
+                    </div>
+                </div>
+
+               
+
+             
+
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Posts.CategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Posts.CategoryId" asp-items="@Model.CategorySelectList" class="form-control">
+                            <option disabled selected>Vui lòng chọn Category</option>
+                        </select>
+                        <span asp-validation-for="Posts.Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Posts.PostsTags"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@Model.SelectListTagIds" asp-items="@Model.TagSelectList" class="form-control" multiple>
+                            <option disabled selected>Vui lòng chọn Tag</option>
+                        </select>
+                        <span asp-validation-for="Posts.PostsTags" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col">
+                        <input type="submit" value="Create" class="btn btn-info" onclick="return validateInput()" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    <script>
+        function validateInput() {
+            console.log(document.getElementById("uploadBox").value);
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Error!',
+                    'Please upload an Image!',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
